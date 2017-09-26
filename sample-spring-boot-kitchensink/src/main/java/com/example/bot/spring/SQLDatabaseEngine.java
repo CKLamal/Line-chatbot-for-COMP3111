@@ -20,8 +20,15 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 				"SELECT * keyword FROM chatbot=?");
 		stmt.setString(1, text);
 		ResultSet rs = stmt.executeQuery();
-		result=rs.getString(2);
+		if(rs!=null)
+		{
+			result=rs.getString(2);
+		}
 		
+		
+		rs.close();
+		stmt.close();
+		connection.close();
 		return result;
 	}
 	
