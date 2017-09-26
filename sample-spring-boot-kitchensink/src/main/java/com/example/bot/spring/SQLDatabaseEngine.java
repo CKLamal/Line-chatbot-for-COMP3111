@@ -14,7 +14,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 	@Override
 	String search(String text) throws Exception {
 		//Write your code here
-		String result=null;
+		String result=text;
 		//try 
 		{
 			Connection connection=getConnection();
@@ -30,7 +30,9 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 			
 		}
 		
-		
+		if (result.equals(text)) {
+			throw  new Exception("NOT FOUND");
+		}
 		return result;
 	}
 	
