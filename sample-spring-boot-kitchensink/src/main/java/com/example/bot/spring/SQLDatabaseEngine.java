@@ -17,7 +17,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 		Connection connection=getConnection();
 		String result=null;
 		PreparedStatement stmt = connection.prepareStatement(
-				"SELECT * keyword FROM chatbot=?");
+				"SELECT * FROM chatbot WHERE keyword=?");
 		stmt.setString(1, text);
 		ResultSet rs = stmt.executeQuery();
 		if(rs!=null)
