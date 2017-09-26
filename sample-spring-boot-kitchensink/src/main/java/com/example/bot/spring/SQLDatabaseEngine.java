@@ -14,21 +14,23 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 	@Override
 	String search(String text) throws Exception {
 		//Write your code here
-		Connection connection=getConnection();
 		String result=null;
-		PreparedStatement stmt = connection.prepareStatement(
-				"SELECT * FROM chatbot WHERE keyword=?");
-		stmt.setString(1, text);
-		ResultSet rs = stmt.executeQuery();
-		if(rs!=null)
+		//try 
 		{
-			result=rs.getString(2);
+			Connection connection=getConnection();
+			PreparedStatement stmt = connection.prepareStatement(
+					"SELECT * FROM chatbot WHERE keyword=?");
+			stmt.setString(1, text);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next())
+			{	
+				result=rs.getString(2);
+			}
+			
+			
 		}
 		
 		
-		rs.close();
-		stmt.close();
-		connection.close();
 		return result;
 	}
 	
